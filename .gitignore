@@ -1,0 +1,49 @@
+# Python and Django files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.egg-info/
+
+# Media files
+media/
+
+# Database files
+db.sqlite3
+
+# IDE and editor files
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Virtual environment files
+venv/
+env/
+
+# Log files
+*.log
+
+# Migrations
+migrations/*.py
+e_commerce/__pycache__/
+store/__pycache__/
+
+store/migrations/
+
+
+# Static files (if you're using collectstatic)
+staticfiles/
+
+# Other
+*.bak
+*.tmp
+*.swp
+*.swo
+
+db.sqlite3

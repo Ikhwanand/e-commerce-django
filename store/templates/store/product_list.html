@@ -1,0 +1,45 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h1>Products</h1>
+<form method="get" class="form-inline mb-4">
+    {{ form.query }}
+    <button type="submit" class="btn btn-primary ml-2">Search</button>
+</form>
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="{% url 'store:product_detail' product.pk %}" class="btn btn-sm btn-outline-secondary">View</a>
+                        <a href="{% url 'store:add_to_cart' product.pk %}" class="btn btn-sm btn-outline-secondary">Add to Cart</a>
+                    </div>
+                    <small class="text-muted">${{ product.price }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if products.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ products.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ products.number }} of {{ products.paginator.num_pages }}
+        </span>
+
+        {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}">next</a>
+            <a href="?page={{ products.paginator.num_pages}}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "store/base.html" %}
+{% block content %}
+<h1>Checkout</h1>
+<form action="{% url 'store:checkout' %}" method='POST'>
+    {% csrf_token %}
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{ STRIPE_PUBLISHABLE_KEY }}"
+        data-amount="{{ order.get_total_cost }}"
+        data-name="E-commerce"
+        data-description="Purchase"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto"
+        data-currency="usd">
+    </script>
+</form>
+{% endblock content %}
